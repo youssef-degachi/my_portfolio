@@ -27,12 +27,14 @@ module.exports = {
 
       colors:{
         primary: '#1C1C22',
+        secondary: "#393A47",
         accent:{
-          default:"#00ff99",
-          hover: "#00e187"
-        }
+          default:"#f13024",
+          hover: "#d03329"
+        },
+        tertiary: "#F13024"
       },
-
+  
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

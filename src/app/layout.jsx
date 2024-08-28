@@ -6,6 +6,8 @@ import "./globals.css";
 import Header from "@/components/Header";
 import PageTransition from "@/components/PageTransition";
 import StairTransition from "@/components/StairTransition";
+import StarAnimation from "@/components/StarAnimation";
+import ParticlesContainer from "@/components/ParticlesContainer";
 
 
 const JetBrainsMono = JetBrains_Mono({
@@ -23,7 +25,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={JetBrainsMono.className}>
+        {/* <StarAnimation /> */}
         <Header />
+        <ParticlesContainer className="z-index-negative-100 opacity-20" />
         <StairTransition/>
         <PageTransition>
           {children }

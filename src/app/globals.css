@@ -24,3 +24,7 @@
     -webkit-text-stroke: 1px #00FF99;
   }
 }
+
+.z-index-negative-100 {
+  z-index: -100;
+}
