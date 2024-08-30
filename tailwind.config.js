@@ -32,7 +32,11 @@ module.exports = {
           default:"#f13024",
           hover: "#d03329"
         },
-        tertiary: "#F13024"
+        tertiary: "#F13024",
+        provision:{
+          default:"#00ff99",
+          hover: "#00e187"
+        }
       },
   
       keyframes: {
