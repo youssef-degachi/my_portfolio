@@ -21,7 +21,7 @@ const Header = () => {
         {/* //^ Desktop nav & hire me button*/}
         <div className="hidden xl:flex  items-center gap-8">
           <Nav />
-          <Button> Hire me </Button>
+          {/* <Button> Hire me </Button> */}
         </div>
         {/* //^ mobile nav*/}
         <div className="xl:hidden">
