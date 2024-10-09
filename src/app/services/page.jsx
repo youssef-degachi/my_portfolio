@@ -3,33 +3,32 @@ import { BsArrowDownRight } from "react-icons/bs";
 import Link from "next/link";
 // import { createContext } from 'react';
 
-const services= [
+const services = [
   {
     num: '01',
-    title:'Web Development',
-    description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. inventore sint!",
-    href:"",
+    title: 'Web Development',
+    description: "Building responsive and user-friendly websites using modern technologies like React and Node.js.",
+    href: "/contact",
   },
   {
     num: '02',
-    title:'UI/UX Design',
-    description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. inventore sint!",
-    href:"",
+    title: 'UI/UX Design',
+    description: "Crafting intuitive interfaces and engaging user experiences tailored to your audience.",
+    href: "/contact",
   },
   {
     num: '03',
-    title:'logo Design',
-    description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. inventore sint!",
-    href:"",
+    title: 'Logo Design',
+    description: "Creating memorable logos that reflect your brand's identity and values.",
+    href: "/contact",
   },
   {
     num: '04',
-    title:'SEO',
-    description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. inventore sint!",
-    href:"",
+    title: 'SEO',
+    description: "Optimizing your website to improve visibility and rank higher in search engine results.",
+    href: "/contact",
   },
 ];
-
 import { motion } from "framer-motion";
 
 
