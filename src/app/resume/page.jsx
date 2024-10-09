@@ -8,9 +8,9 @@ import {SiTailwindcss, SiNextdotjs} from "react-icons/si"
 //  about
 const about = {
   title : "About me",
-  description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada, velit non vulputate semper,
-                ipsum velit ultricies lectus, et consectetur enim velit a est. Donec euismod, lectus vel vulputate scelerisque,
-                enim purus laoreet lacus, vel consectetur lectus purus non velit.`,
+  description: `Enthusiastic software developer skilled in React, Node.js, and MongoDB with experience in building
+scalable web applications. Proven ability to design user-friendly interfaces and optimize backend systems
+for performance. Seeking opportunities to contribute innovative solutions in a dynamic team environment.`,
   info: [
     {
       fieldName : "Name",
@@ -22,15 +22,15 @@ const about = {
     },
     {
       fieldName : "Experience",
-      fieldValue : "2+ Years"
+      fieldValue : "1+ Years"
     },
     {
       fieldName : "Nationality",
-      fieldValue : " Tunisia"
+      fieldValue : "Tunisia"
     },
     {
       fieldName : "Freelance",
-      fieldValue : "Available"
+      fieldValue : "Unavailable"
     },
     {
       fieldName : "Languages",
@@ -46,149 +46,93 @@ const about = {
 // experience data
 
 const experience = {
-  icon: '/assets/resume/badge.svg',
-  title: 'My experience',
-  description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada, velit non vulputate semper,
-                ipsum velit ultricies lectus, et consectetur enim velit a est. Donec euismod, lectus vel vulputate scelerisque,
-                enim purus laoreet lacus, vel consectetur lectus purus non velit.`,
-  items:[
+  icon: '/assets/resume/work.svg',
+  title: 'My Experience',
+  description: `I have hands-on experience in software development through my internship, where I gained practical skills in full stack development and collaborated on real-world projects.`,
+  items: [
     {
-      company: "tech solutions Inc.",
-      position: "Senior Frontend Developer",
-      duration: "2021-Present",
-      // description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada, velit non vulputate semper,
-      //           ipsum velit ultricies lectus, et consectetur enim velit a est. Donec euismod, lectus vel vulputate scelerisque,
-      //           enim purus laoreet lacus, vel consectetur lectus purus non velit.`,
+      company: "WEB AGENCY TOZEUR",
+      position: "Full Stack Developer Intern",
+      duration: "4 months",
     },
     {
-      company: "Web design Studio.",
-      position: "Frontend Developer",
-      duration: "Summer 2020 - 2021",
-      // description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada, velit non vulputate semper,
-      //           ipsum velit ultricies lectus, et consectetur enim velit a est. Donec euismod, lectus vel vulputate scelerisque,
-      //           enim purus laoreet lacus, vel consectetur lectus purus non velit.`,
+      company: "ISET Tozeur",
+      position: "Software Developer Student",
+      duration: "2022-Present"
     },
-    {
-      company: "E-commerce Startup",
-      position: "freelance web developer",
-      duration: "2019-2020",
-      // description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada, velit non vulputate semper,
-      //           ipsum velit ultricies lectus, et consectetur enim velit a est. Donec euismod, lectus vel vulputate scelerisque,
-      //           enim purus laoreet lacus, vel consectetur lectus purus non velit.`,
-    },
-    {
-      company: "Tech Academy",
-      position: "Teaching assistant",
-      duration: "2019-2020",
-      // description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada, velit non vulputate semper,
-      //           ipsum velit ultricies lectus, et consectetur enim velit a est. Donec euismod, lectus vel vulputate scelerisque,
-      //           enim purus laoreet lacus, vel consectetur lectus purus non velit.`,
-    },
-    {
-      company: "digital Agency",
-      position: "UI/UX Designer",
-      duration: "2018-2019",
-      // description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada, velit non vulputate semper,
-      //           ipsum velit ultricies lectus, et consectetur enim velit a est. Donec euismod, lectus vel vulputate scelerisque,
-      //           enim purus laoreet lacus, vel consectetur lectus purus non velit.`,
-    },
-    {
-      company: "software development firm",
-      position: "junior developer",
-      duration: "2019-2020",
-      // description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada, velit non vulputate semper,
-      //           ipsum velit ultricies lectus, et consectetur enim velit a est. Donec euismod, lectus vel vulputate scelerisque,
-      //           enim purus laoreet lacus, vel consectetur lectus purus non velit.`,
-    },
-    
-
+    // You can add more experience items here if needed
   ]
 }
-
 // education data
 
 const education = {
   icon: '/assets/resume/cap.svg',
   title: 'My education',
-  description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada, velit non vulputate semper,
-                ipsum velit ultricies lectus, et consectetur enim velit a est. Donec euismod, lectus vel vulputate scelerisque,
-                enim purus laoreet lacus, vel consectetur lectus purus non velit.`,
+  description: `I have a solid foundation in software development and design, complemented by ongoing education in full stack web development and data structures.`,
   items:[
+    {
+      institution: "ISET Tozeur",
+      degree: "Software Developer Student",
+      duration: "2022-Present"
+    },
+    {
+      institution: "Yanfaa Academy",
+      degree: "Technology and Design",
+      duration: "2023-Present"
+    },
     {
       institution: "Online Course Platform.",
       degree: "Full Stack Web Development Bootcamp",
       duration: "2023",
     },
     {
-      institution: "codecademy",
-      degree: "Front-end Track",
-      duration: "2022",
-    },
-    {
       institution: "Online Course.",
-      degree: "Programming Course",
-      duration: "2020 - 2021",
-    },
-    {
-      institution: "Tech Institute.",
-      degree: "Certified Web Developer",
-      duration: "2020 - 2021",
-    },
-    {
-      institution: "Design School.",
-      degree: "Diploma in Graphic Design",
-      duration: "2016 - 2018",
-    },
-    {
-      institution: "Commuinty College.",
-      degree: "Associate Degreee in Computer Science",
-      duration: "2016 - 2018",
+      degree: "Data Structer and Algorith",
+      duration: "2023",
     },
   ]
 }
 
 // skills data
 const skills = {
-  title: "My skills",
-  description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada, velit non vulputate semper,
-                ipsum velit ultricies lectus, et consectetur enim velit a est. Donec euismod, lectus vel vulputate scelerisque,
-                enim purus laoreet lacus, vel consectetur lectus purus non velit.`,
+  title: "My Skills",
+  description: `I specialize in web development and design, with expertise in HTML, CSS, JavaScript, and frameworks like React and Next.js. I also create responsive designs using Tailwind CSS and utilize Node.js for back-end development.`,
   skillList: [
     {
       icon: <FaHtml5 />,
-      name: "html 5",
+      name: "HTML5",
     },
     {
       icon: <FaCss3 />,
-      name: "css 3",
+      name: "CSS3",
     },
     {
-      icon: <FaJs/>,
-      name: "js",
+      icon: <FaJs />,
+      name: "JavaScript",
     },
     {
       icon: <FaReact />,
-      name: "react.js",
+      name: "React.js",
     },
     {
       icon: <SiNextdotjs />,
-      name: "next.js",
+      name: "Next.js",
     },
     {
       icon: <SiTailwindcss />,
-      name: "tailwind.js",
-    },,
+      name: "Tailwind CSS",
+    },
     {
       icon: <FaNodeJs />,
-      name: "node.js",
-    },,
+      name: "Node.js",
+    },
     {
       icon: <FaFigma />,
-      name: "figma",
+      name: "Figma",
     },
-    
   ],
 };
+
 
 
 import { Tabs , TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
