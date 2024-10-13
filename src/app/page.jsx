@@ -4,7 +4,7 @@ import { FiDownload } from "react-icons/fi"
 import Social from "@/components/Social"
 import Photo from "@/components/Photo"
 import Stats from "@/components/Stats"
-import StairTransition from "@/components/StairTransition"
+// import StairTransition from "@/components/StairTransition"
 
 const Home = () => {
   return (
