@@ -22,12 +22,12 @@ import WorkSliderBtns from "@/components/WorkSliderBtns";
 const projects = [
   {
     num: "01",
-    category:"frontend",
+    category:"Design",
     title: "project 1",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    stack:[{name: "HTML 5"}, {name: "Css 3"},{name: "Javascript"}],
+    description: "Designed a logo and mockups.",
+    stack:[{name: "Adobe Illustrator"}, {name: "Adobe Photoshop"}],
     // link: "/project/1",
-    image: "/assets/work/thumb1.png",
+    image: "/assets/work/thumb1.jpg",
     live:"",
     github:"/",
   },
@@ -35,8 +35,8 @@ const projects = [
     num: "02",
     category:"fullstack",
     title: "project 2",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    stack:[{name: "Next.js"}, {name: "Tailwind.css"},{name: "Javascript"}],
+    description: "Developed a complete e-commerce website.",
+    stack:[{name: "React.js"}, {name: "Bootstrap"},{name: "Node.js"},{name: "MongoDb"},{name: "NoSql"}],
     // link: "/project/1",
     image: "/assets/work/thumb2.png",
     live:"",
@@ -46,8 +46,8 @@ const projects = [
     num: "03",
     category:"frontend",
     title: "project 3",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    stack:[{name: "Next.js"}, {name: "Tailwind.css"},{name: "Javascript"}],
+    description: "Created the frontend for a 3D t-shirt application.",
+    stack:[{name: "React.js"}, {name: "CSS"},{name: "React Three Fiber"}],
     // link: "/project/1",
     image: "/assets/work/thumb3.png",
     live:"",
@@ -139,7 +139,7 @@ const Work = () => {
             onSlideChange={handleSlideChange}
           >
             {projects.map((project,index) => {
-              return <SwiperSlide key={index} className="w-full">
+              return <SwiperSlide key={index} className="w-full h-[460px]">
                 <div className="h-[460px] relative group flex justify-center items-center bg-pink-50/20">
                   {/* overlay */}
                   <div className="absolute top-0 bottom-0 w-full h-full bg-black/10 z-10"></div>
@@ -147,7 +147,7 @@ const Work = () => {
                   <div>
                     <Image  
                       src={project.image}
-                      fill
+                      layout="fill"
                       className="object-cover"
                       alt=""
                       />
