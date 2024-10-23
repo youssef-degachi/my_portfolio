@@ -5,6 +5,7 @@ import { Button } from './ui/button'
 // component
 import Nav from './Nav'
 import MobileNav from './MobileNav'
+import Sidebar from './Sidebar'
 
 
 
