@@ -1,5 +1,5 @@
 // next.config.js
-module.exports = {
+export default {
   // Optional: Add basePath if using a sub-path on GitHub Pages
   basePath: '/my_prortfolio',
   assetPrefix: '/my_prortfolio',

@@ -8,9 +8,8 @@ import {
   HiEnvelope
 } from 'react-icons/hi'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 
-
+// Data for navigation
 export const navData = [
   { name: 'home', path: '/', icon: <HiHome /> },
   { name: 'about', path: '/about', icon: <HiUser /> },
@@ -31,14 +30,17 @@ export const navData = [
 const Sidebar = () => {
   return (
     <div>
-      {navData.map((link,index) => {
-
-        return <Link href={link.path} key={index}>{link.icon}</Link>//-
-        // return <Link href={link.path} key={index}>{link.icon}</Link>//+
-      })}
+      {/* Render links based on navData */}
+      {navData.map((link, index) => (
+        <Link href={link.path} key={index}>
+          <a className="sidebar-link">
+            {link.icon}
+            <span>{link.name}</span>
+          </a>
+        </Link>
+      ))}
     </div>
   )
 }
-
 
 export default Sidebar
