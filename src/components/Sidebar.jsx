@@ -2,28 +2,28 @@ import React from 'react'
 import {
   HiHome,
   HiUser,
-  HiViewColumns,
-  HiRectangleGroup,
-  HiChatBubbleBottomCenterText,
-  HiEnvelope
+  HiViewGrid,
+  HiCollection,
+  HiChatAlt,
+  HiMail
 } from 'react-icons/hi'
-import Link from 'next/link'
+import { Link } from 'react-router-dom'
 
 // Data for navigation
 export const navData = [
   { name: 'home', path: '/', icon: <HiHome /> },
   { name: 'about', path: '/about', icon: <HiUser /> },
-  { name: 'services', path: '/services', icon: <HiRectangleGroup /> },
-  { name: 'work', path: '/work', icon: <HiViewColumns /> },
+  { name: 'services', path: '/services', icon: <HiCollection /> },
+  { name: 'work', path: '/work', icon: <HiViewGrid /> },
   {
     name: 'testimonials',
     path: '/testimonials',
-    icon: <HiChatBubbleBottomCenterText />,
+    icon: <HiChatAlt />,
   },
   {
     name: 'contact',
     path: '/contact',
-    icon: <HiEnvelope />,
+    icon: <HiMail />,
   },
 ]
 
@@ -32,11 +32,9 @@ const Sidebar = () => {
     <div>
       {/* Render links based on navData */}
       {navData.map((link, index) => (
-        <Link href={link.path} key={index}>
-          <a className="sidebar-link">
-            {link.icon}
-            <span>{link.name}</span>
-          </a>
+        <Link to={link.path} key={index} className="sidebar-link">
+          {link.icon}
+          <span>{link.name}</span>
         </Link>
       ))}
     </div>

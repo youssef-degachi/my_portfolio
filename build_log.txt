@@ -1,0 +1,29 @@
+
+> my-profile@0.1.0 build
+> vite build
+
+vite v5.4.21 building for production...
+transforming...
+✓ 912 modules transformed.
+x Build failed in 3.52s
+error during build:
+src/components/Sidebar.jsx (5:2): "HiViewColumns" is not exported by "node_modules/react-icons/hi/index.mjs", imported by "src/components/Sidebar.jsx".
+file: /home/youssef/youssef/my_portfolio/src/components/Sidebar.jsx:5:2
+
+3:   HiHome,
+4:   HiUser,
+5:   HiViewColumns,
+     ^
+6:   HiCollection,
+7:   HiChatAlt,
+
+    at getRollupError (file:///home/youssef/youssef/my_portfolio/node_modules/rollup/dist/es/shared/parseAst.js:401:41)
+    at error (file:///home/youssef/youssef/my_portfolio/node_modules/rollup/dist/es/shared/parseAst.js:397:42)
+    at Module.error (file:///home/youssef/youssef/my_portfolio/node_modules/rollup/dist/es/shared/node-entry.js:17022:16)
+    at Module.traceVariable (file:///home/youssef/youssef/my_portfolio/node_modules/rollup/dist/es/shared/node-entry.js:17478:29)
+    at ModuleScope.findVariable (file:///home/youssef/youssef/my_portfolio/node_modules/rollup/dist/es/shared/node-entry.js:15141:39)
+    at Identifier.bind (file:///home/youssef/youssef/my_portfolio/node_modules/rollup/dist/es/shared/node-entry.js:5462:40)
+    at CallExpression.bind (file:///home/youssef/youssef/my_portfolio/node_modules/rollup/dist/es/shared/node-entry.js:2825:28)
+    at CallExpression.bind (file:///home/youssef/youssef/my_portfolio/node_modules/rollup/dist/es/shared/node-entry.js:12172:15)
+    at Property.bind (file:///home/youssef/youssef/my_portfolio/node_modules/rollup/dist/es/shared/node-entry.js:2829:23)
+    at ObjectExpression.bind (file:///home/youssef/youssef/my_portfolio/node_modules/rollup/dist/es/shared/node-entry.js:2825:28)

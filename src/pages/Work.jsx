@@ -1,8 +1,5 @@
-"use client"
-
 import { motion } from "framer-motion";
 import React, { useState } from "react";
-
 
 import {
   Tooltip,
@@ -11,8 +8,7 @@ import {
   TooltipTrigger
 } from "@/components/ui/tooltip"
 
-import Link from "next/link";
-import Image from "next/image"
+import { Link } from "react-router-dom";
 import { BsArrowUpRight, BsGithub } from "react-icons/bs";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css"; // Import Swiper styles
@@ -26,7 +22,6 @@ const projects = [
     title: "project 1",
     description: "Designed a logo and mockups.",
     stack:[{name: "Adobe Illustrator"}, {name: "Adobe Photoshop"}],
-    // link: "/project/1",
     image: "/assets/work/thumb1.jpg",
     live:"",
     github:"/",
@@ -37,7 +32,6 @@ const projects = [
     title: "project 2",
     description: "Developed a complete e-commerce website.",
     stack:[{name: "React.js"}, {name: "Bootstrap"},{name: "Node.js"},{name: "MongoDb"},{name: "NoSql"}],
-    // link: "/project/1",
     image: "/assets/work/thumb2.png",
     live:"",
     github:"/",
@@ -48,7 +42,6 @@ const projects = [
     title: "project 3",
     description: "Created the frontend for a 3D t-shirt application.",
     stack:[{name: "React.js"}, {name: "CSS"},{name: "React Three Fiber"}],
-    // link: "/project/1",
     image: "/assets/work/thumb3.png",
     live:"",
     github:"/",
@@ -102,7 +95,7 @@ const Work = () => {
                   {/* buttons */}
                   <div className="flex items-center gap-4">
                     {/* live project button */}
-                    <Link href={project.live}>
+                    <Link to={project.live}>
                       <TooltipProvider delayDuration={100}>
                         <Tooltip>
                           <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
@@ -115,7 +108,7 @@ const Work = () => {
                       </TooltipProvider>
                     </Link> 
                     {/* github project button */}
-                    <Link href={project.github}>
+                    <Link to={project.github}>
                       <TooltipProvider delayDuration={100}>
                         <Tooltip>
                           <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
@@ -144,14 +137,11 @@ const Work = () => {
                   {/* overlay */}
                   <div className="absolute top-0 bottom-0 w-full h-full bg-black/10 z-10"></div>
                   {/* image */}
-                  <div>
-                    <Image  
-                      src={project.image}
-                      layout="fill"
-                      className="object-cover"
-                      alt=""
-                      />
-                  </div>
+                  <img  
+                    src={project.image}
+                    className="object-cover w-full h-full"
+                    alt=""
+                    />
                 </div>
               </SwiperSlide>
             })}
@@ -169,3 +159,4 @@ const Work = () => {
 }
 
 export default Work
+

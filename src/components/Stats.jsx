@@ -1,6 +1,3 @@
-"use client";
-
-import { Instrument_Sans } from "next/font/google";
 import CountUp from "react-countup";
 
 const stats = [

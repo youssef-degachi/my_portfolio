@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from 'next/link'
+import { Link } from 'react-router-dom'
 import { Button } from './ui/button'
 
 // component
@@ -7,14 +7,12 @@ import Nav from './Nav'
 import MobileNav from './MobileNav'
 import Sidebar from './Sidebar'
 
-
-
 const Header = () => {
   return (
     <header className="py-8 xl:py-12 text-white">
       <div className="container mx-auto flex justify-between items-center">
         {/* //& logo */}
-        <Link href="/">
+        <Link to="/">
           <h1 className="text-4xl font-semibold" >
             Youssef <span className="text-accent-default">.</span>
             </h1>

@@ -1,21 +1,20 @@
-"use client";
 import  { AnimatePresence, motion } from "framer-motion";
-import { usePathname } from "next/navigation";
+import { useLocation } from "react-router-dom";
 
 const PageTransition = ({children}) => {
-  const pathname = usePathname()
-  return <AnimatePresence>
-      <div key={pathname}>
-        <motion.div 
-          initial={{opacity:1}} 
-          animate={{
-            opacity: 0,
-            transition: {delay:1, duration: 0.4, ease : "easeInOut"}
-          }}
-          className="h-screen w-screen fixed top-0 pointer-events-none z-10"
-        ></motion.div>
+  const location = useLocation();
+  const pathname = location.pathname;
+  
+  return <AnimatePresence mode="wait">
+      <motion.div 
+        key={pathname}
+        initial={{opacity: 0}}
+        animate={{opacity: 1}}
+        exit={{opacity: 0}}
+        transition={{duration: 0.3}}
+      >
         {children}
-      </div>
+      </motion.div>
     </AnimatePresence>
   
 }

@@ -1,24 +1,25 @@
-"use client"
 import { AnimatePresence, motion } from "framer-motion";
-import { usePathname } from "next/navigation";
+import { useLocation } from "react-router-dom";
 
 // components
 import Stairs from "./Stairs";
 
 const StairTransition = () => {
-  const pathname = usePathname();
+  const location = useLocation();
+  const pathname = location.pathname;
+  
   return (
       <>
-        <AnimatePresence model="wait">
+        <AnimatePresence mode="wait">
           <div key={pathname}>
             <div className="h-screen w-screen fixed top-0  left-0  right-0 pointer-events-none z-40 flex">
               <Stairs />
             </div>
-            <motion.div className="h-screen w-screen fixed bg-primary top-0 pointer-events-none"
+            <motion.div className="h-screen w-screen fixed bg-primary top-0 pointer-events-none z-50"
               initial={{opacity: 1}}
               animate={{
                 opacity: 0,
-                transition: { delay:1, duration: 0.4,ease:"easeInOut" }
+                transition: { delay:0.5, duration: 0.4,ease:"easeInOut" }
               }}
             />
           </div>

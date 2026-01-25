@@ -4,8 +4,27 @@
   
 
 @layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
   body {
-    @apply font-primary bg-primary text-white leading-loose
+    @apply font-jetbrains-mono bg-primary text-white leading-loose;
+    min-height: 100vh;
+  }
+  
+  #root {
+    min-height: 100vh;
+    width: 100%;
   }
   .h1{
     @apply text-[48px] xl:text-[80px] leading-[1.1] font-semibold;
@@ -27,4 +46,8 @@
 
 .z-index-negative-100 {
   z-index: -100;
+}
+
+.font-jetbrains-mono {
+  font-family: 'JetBrains Mono', monospace;
 }

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "react-router-dom";
 
 import {FaGithub, FaYoutube, FaTwitter, FaLinkedinIn}  from "react-icons/fa";
 
@@ -14,7 +14,7 @@ const Social = ({containerStyles, iconStyles}) => {
   return <div className={containerStyles}>
     {socials.map((item,index)=>{
       return (
-      <Link key={index} href={item.path} className={iconStyles}>
+      <Link key={index} to={item.path} className={iconStyles}>
           {item.icon}
       </Link>)
     })}
