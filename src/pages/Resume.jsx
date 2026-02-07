@@ -73,12 +73,12 @@ const education = {
     {
       institution: "ISET Tozeur",
       degree: "Software Developer Student",
-      duration: "2022-Present"
+      duration: "2022-2025"
     },
     {
       institution: "Yanfaa Academy",
       degree: "Technology and Design",
-      duration: "2023-Present"
+      duration: "2023-2024"
     },
     {
       institution: "Online Course Platform.",

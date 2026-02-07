@@ -23,7 +23,7 @@ const services = [
   },
   {
     num: '04',
-    title: 'Voice AI Agent Building',
+    title: 'Voice AI Agent ',
     description: "Building intelligent voice AI agents to revolutionize customer interaction and support.",
     href: "/contact",
   },
