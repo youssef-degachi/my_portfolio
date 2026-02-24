@@ -1,4 +1,4 @@
-import { FaHtml5, FaCss3, FaJs, FaReact, FaFigma, FaNodeJs } from "react-icons/fa"
+import { FaHtml5, FaCss3, FaJs, FaReact, FaFigma, FaNodeJs, FaPython, FaCloud, FaMobile } from "react-icons/fa"
 
 import { SiTailwindcss, SiNextdotjs } from "react-icons/si"
 
@@ -45,20 +45,33 @@ const experience = {
   title: 'My Experience',
   description: `I have hands-on experience in software development through my internship, where I gained practical skills in full stack development and collaborated on real-world projects.`,
   items: [
+    
     {
-      company: "WEB AGENCY TOZEUR",
-      position: "Full Stack Developer Intern",
-      duration: "4 months",
+      company: "JeridSchool",
+      position: "Co-Founder",
+      duration: "2025-present",
+      companyLink: "https://jeridschool.com"
     },
     {
-      company: "ISET Tozeur",
-      position: "Software Developer Student",
-      duration: "2022-Present"
+      company: "AndalibAi",
+      position: "Co-Founder",
+      duration: "2025-present",
+      companyLink: "https://andalibai.com"
     },
     {
       company: "CodeCooperation",
       position: "Software Developer Student",
-      duration: "2024-Present"
+      duration: "2024-2025"
+    },
+    {
+      company: "WEB AGENCY TOZEUR",
+      position: "Full Stack Developer Intern",
+      duration: "6 months",
+    },
+    {
+      company: "ISET Tozeur",
+      position: "Software Developer Student",
+      duration: "2022-2025"
     },
     // You can add more experience items here if needed
   ]
@@ -96,19 +109,20 @@ const education = {
 // skills data
 const skills = {
   title: "My Skills",
-  description: `I specialize in web development and design, with expertise in HTML, CSS, JavaScript, and frameworks like React and Next.js. I also create responsive designs using Tailwind CSS and utilize Node.js for back-end development.`,
+  description: `I specialize in web and mobile development and design, with expertise in  Next.js, react and react native for mobile. I also create responsive designs using Tailwind CSS and utilize Node.js,Nest.js and Spring-boot for back-end development. And use Python for data analysis and machine learning.`,
   skillList: [
+   
     {
-      icon: <FaHtml5 />,
-      name: "HTML5",
+      icon: <FaMobile />,
+      name: "Mobile",
     },
     {
-      icon: <FaCss3 />,
-      name: "CSS3",
+      icon: <FaCloud />,
+      name: "Cloud",
     },
     {
-      icon: <FaJs />,
-      name: "JavaScript",
+      icon: <FaPython />,
+      name: "Python",
     },
     {
       icon: <FaReact />,
@@ -202,6 +216,7 @@ const Resume = () => {
                             {/* dot */}
                             <span className="w-[6px] h-[6px] rounded-full bg-accent-default"></span>
                             <p className="text-white/60">{item.company}</p>
+                            {item.companyLink && <a href={item.companyLink} target="_blank" rel="noopener noreferrer" className="text-accent-default">Link</a>}
                           </div>
                         </li>)
                     })}

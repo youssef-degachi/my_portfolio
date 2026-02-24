@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import {FaGithub, FaYoutube, FaTwitter, FaLinkedinIn}  from "react-icons/fa";
 
 const socials = [
-  { icon: <FaGithub/>, path:""},
-  { icon: <FaLinkedinIn/>, path:""},
-  { icon: <FaYoutube/>, path:""},
-  { icon: <FaTwitter/>, path:""},
+  { icon: <FaGithub/>, path:"https://github.com/youssef-degachi/"},
+  { icon: <FaLinkedinIn/>, path:"https://www.linkedin.com/in/youssef-degachi/"},
+  { icon: <FaYoutube/>, path:"https://www.youtube.com/@YoussefDegachi0"},
+  { icon: <FaTwitter/>, path:"https://x.com/YoussefDegachi"},
 ]
 
 

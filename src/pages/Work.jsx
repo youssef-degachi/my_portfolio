@@ -90,7 +90,7 @@ const Work = () => {
       {/* Disclaimer */}
       <div className="mb-8 text-center">
         <p className="text-white/50 text-sm italic">
-          Those are not the real projects, just something like it because can't share the real project
+          Those are not the real projects, just something like it because can't share the real project (NDA contract)
         </p>
       </div>
       <div className="flex flex-col xl:flex-row xl:gap-[30px]">
