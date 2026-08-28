@@ -10,10 +10,12 @@ import Services from "@/pages/Services";
 import Resume from "@/pages/Resume";
 import Work from "@/pages/Work";
 import Contact from "@/pages/Contact";
+import Knowledge from "@/pages/Knowledge";
+import KnowledgeEntry from "@/pages/KnowledgeEntry";
 
 function App() {
   return (
-    <Router>
+    <Router basename={import.meta.env.BASE_URL}>
       <div className="font-jetbrains-mono min-h-screen w-full bg-primary relative">
         <ParticlesContainer className="absolute top-0 left-0 w-full h-full opacity-20 z-index-negative-2 pointer-events-none" />
         <Header />
@@ -24,6 +26,8 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/resume" element={<Resume />} />
           <Route path="/work" element={<Work />} />
+          <Route path="/knowledge" element={<Knowledge />} />
+          <Route path="/knowledge/:slug" element={<KnowledgeEntry />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
         {/* </PageTransition> */}

@@ -5,7 +5,8 @@ import { Button } from './ui/button'
 // component
 import Nav from './Nav'
 import MobileNav from './MobileNav'
-import Sidebar from './Sidebar'
+
+const WHATSAPP_URL = "https://wa.me/21650702320"
 
 const Header = () => {
   return (
@@ -20,7 +21,9 @@ const Header = () => {
         {/* //^ Desktop nav & hire me button*/}
         <div className="hidden xl:flex  items-center gap-8">
           <Nav />
-          {/* <Button> Hire me </Button> */}
+          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+            <Button>Hire me</Button>
+          </a>
         </div>
         {/* //^ mobile nav*/}
         <div className="xl:hidden">

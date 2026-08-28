@@ -1,6 +1,7 @@
 import {Sheet, SheetContent, SheetTrigger} from '@/components/ui/sheet';
 import { useLocation, Link } from 'react-router-dom';
 import { CiMenuFries } from 'react-icons/ci'
+import { Button } from './ui/button'
 
 
 const links = [
@@ -17,6 +18,9 @@ const links = [
     name: "work",
     path : "/work",
   },{
+    name: "knowledge",
+    path : "/knowledge",
+  },{
     name: "contact", 
     path : "/contact",
   }
@@ -25,6 +29,7 @@ const links = [
 const MobileNav = () => {
   const location = useLocation();
   const pathname = location.pathname;
+  const isActive = (path) => (path === "/" ? pathname === "/" : pathname.startsWith(path));
   
   return (
     <Sheet>
@@ -45,13 +50,16 @@ const MobileNav = () => {
           {links.map((link ,index) => {
             return (
               <Link to={link.path} key={index} className={`
-                ${link.path=== pathname && "text-accent-default border-b-2 border-accent-default"}
+                ${isActive(link.path) && "text-accent-default border-b-2 border-accent-default"}
                 text-xl capitalize hover:text-accent-default transition-all`}
                 >
                     {link.name}
               </Link>
             )
           })}
+          <a href="https://wa.me/21650702320" target="_blank" rel="noopener noreferrer">
+            <Button>Hire me</Button>
+          </a>
         </div>
       </SheetContent>
     </Sheet>

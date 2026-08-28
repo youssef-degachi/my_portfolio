@@ -35,3 +35,6 @@ out
 
 # Vite
 .vite
+
+# editor app for /knowledge lives in its own repo (../my-personal-info); ignored in case it is ever copied here
+my-personal-info/

@@ -1,0 +1,138 @@
+export const WORK_KIND = {
+  PRODUCT: "product",
+  CLIENT: "client",
+  OPEN_SOURCE: "opensource",
+  YOUTUBE: "youtube",
+};
+
+/**
+ * Future kinds (opensource, youtube) stay in this list with visible: false
+ * until you are ready to show them in the UI.
+ */
+export const workItems = [
+  {
+    id: "andalib-ai",
+    kind: WORK_KIND.PRODUCT,
+    visible: true,
+    title: "Andalib AI",
+    tagline: "AI products for real conversations — voice agents and intelligent workflows.",
+    role: "Co-founder — product, architecture, and shipping the platform.",
+    stack: ["AI", "Voice agents", "Fullstack"],
+    live: "https://andalibai.com",
+    github: "",
+    image: "",
+    mark: "A",
+  },
+  {
+    id: "jeridschool",
+    kind: WORK_KIND.PRODUCT,
+    visible: true,
+    title: "JeridSchool",
+    tagline: "Education platform for learners and schools — built to scale teaching, not just pages.",
+    role: "Co-founder — product and engineering end to end.",
+    stack: ["Fullstack", "Education", "Web"],
+    live: "https://jeridschool.com",
+    github: "",
+    image: "",
+    mark: "J",
+  },
+  {
+    id: "opensource",
+    kind: WORK_KIND.OPEN_SOURCE,
+    visible: false,
+    title: "Open source",
+    tagline: "Public repos and contributions — coming later.",
+    role: "",
+    stack: [],
+    live: "",
+    github: "",
+    image: "",
+    mark: "OS",
+  },
+  {
+    id: "youtube",
+    kind: WORK_KIND.YOUTUBE,
+    visible: false,
+    title: "YouTube",
+    tagline: "Channel and videos — coming later.",
+    role: "",
+    stack: [],
+    live: "https://www.youtube.com/@YoussefDegachi0",
+    github: "",
+    image: "",
+    mark: "YT",
+  },
+  {
+    num: "01",
+    kind: WORK_KIND.CLIENT,
+    visible: true,
+    nda: true,
+    category: "Design",
+    title: "ControlAI Design",
+    description:
+      "Landing page for one of our clients. A modern and responsive design showcasing AI-powered solutions.",
+    stack: [{ name: "React.js" }, { name: "Tailwind CSS" }, { name: "Voice AI Agent" }],
+    image: "/assets/work/controleAi.png",
+    live: "https://controlai-design.vercel.app/",
+    github: "",
+  },
+  {
+    num: "02",
+    kind: WORK_KIND.CLIENT,
+    visible: true,
+    nda: true,
+    category: "Fullstack",
+    title: "Smart Blind Assistant",
+    description:
+      "An innovative application designed to support blind people with AI-powered assistance and accessibility features.",
+    stack: [{ name: "React.js" }, { name: "AI Integration" }, { name: "Accessibility" }],
+    image: "/assets/work/eye.png",
+    live: "https://smart-blind-assistant.vercel.app/home",
+    github: "",
+  },
+  {
+    num: "03",
+    kind: WORK_KIND.CLIENT,
+    visible: true,
+    nda: true,
+    category: "Fullstack",
+    title: "Management Store",
+    description:
+      "A comprehensive management system for store operations, built for one of our clients.",
+    stack: [{ name: "React.js" }, { name: "Node.js" }, { name: "Database" }, { name: "API Integration" }],
+    image: "/assets/work/managment-store.png",
+    live: "https://arpa-flow.vercel.app/",
+    github: "",
+  },
+  {
+    num: "04",
+    kind: WORK_KIND.CLIENT,
+    visible: true,
+    nda: true,
+    category: "Fullstack",
+    title: "Saudi Citizen Support",
+    description:
+      "A platform that won first place in a hackathon. Designed to provide support and services for Saudi citizens.",
+    stack: [{ name: "React.js" }, { name: "AI Integration" }, { name: "Backend Services" }, { name: "Arabic Support" }],
+    image: "/assets/work/saudi-support.png",
+    live: "https://saudi-citizen-support.vercel.app/",
+    github: "",
+  },
+  {
+    num: "05",
+    kind: WORK_KIND.CLIENT,
+    visible: true,
+    nda: true,
+    category: "Fullstack",
+    title: "Wedding Sales Manager",
+    description:
+      "A complete wedding sales management application for one of our clients, handling bookings, sales, and event management.",
+    stack: [{ name: "React.js" }, { name: "Node.js" }, { name: "Database" }, { name: "Payment Integration" }],
+    image: "/assets/work/wedding-system.png",
+    live: "https://najib-salles.vercel.app/",
+    github: "",
+  },
+];
+
+export const visibleWorkByKind = (kind) =>
+  workItems.filter((item) => item.kind === kind && item.visible);

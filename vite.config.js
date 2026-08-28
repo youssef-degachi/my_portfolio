@@ -4,6 +4,8 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // '/' locally; the GitHub Pages workflow sets VITE_BASE=/<repo>/ (or '/' with a custom domain)
+  base: process.env.VITE_BASE || '/',
   plugins: [react()],
   resolve: {
     alias: {

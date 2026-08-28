@@ -20,6 +20,9 @@ const Home = () => {
               I excel at crafting elegant digital experiences and I am
               proficient in various programming languages and technologies.
             </p>
+            <p className="mt-4 text-white/60">
+              Available for freelance — the fastest way to start is WhatsApp.
+            </p>
             {/* btn and socials */}
             <div className="flex flex-col xl:flex-row items-center gap-8 pt-3">
               <a 

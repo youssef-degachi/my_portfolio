@@ -1,35 +1,43 @@
 import { Button } from "@/components/ui/button";
-import { FaPhoneAlt, FaEnvelope, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import { FaPhoneAlt, FaEnvelope, FaLinkedin, FaWhatsapp, FaGithub } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const contactMethods = [
+  {
+    icon: <FaWhatsapp />,
+    title: "WhatsApp",
+    description: "(+216) 50 702 320",
+    link: "https://wa.me/21650702320",
+    action: "Message me on WhatsApp",
+    primary: true,
+  },
   {
     icon: <FaEnvelope />,
     title: "Email",
     description: "youssefdegachi0@gmail.com",
     link: "mailto:youssefdegachi0@gmail.com",
-    action: "Send Email"
+    action: "Send Email",
   },
   {
     icon: <FaPhoneAlt />,
     title: "Phone",
     description: "(+216) 50 702 320",
     link: "tel:+21650702320",
-    action: "Call Now"
+    action: "Call Now",
   },
   {
     icon: <FaLinkedin />,
     title: "LinkedIn",
     description: "Youssef Degachi",
-    link: "https://www.linkedin.com/in/youssef-degachi", // Update with your actual LinkedIn URL
-    action: "Connect"
+    link: "https://www.linkedin.com/in/youssef-degachi/",
+    action: "Connect",
   },
   {
-    icon: <FaWhatsapp />,
-    title: "WhatsApp",
-    description: "(+216) 50 702 320",
-    link: "https://wa.me/21650702320",
-    action: "Chat on WhatsApp"
+    icon: <FaGithub />,
+    title: "GitHub",
+    description: "youssef-degachi",
+    link: "https://github.com/youssef-degachi/",
+    action: "View GitHub",
   },
 ]
 
@@ -44,7 +52,7 @@ const Contact = () => {
         <div className="flex flex-col items-center justify-center min-h-[60vh]">
           <div className="text-center mb-12">
             <h3 className="text-accent-default text-4xl mb-4">Let's work together</h3>
-            <p className="text-white/60 text-lg">Choose your preferred way to reach me</p>
+            <p className="text-white/60 text-lg">I'm available for freelance — WhatsApp is the fastest way to reach me</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
@@ -57,7 +65,11 @@ const Contact = () => {
                   y: 0,
                   transition: { delay: 1.6 + index * 0.1, duration: 0.4 }
                 }}
-                className="p-8 bg-[#27272c] rounded-xl hover:bg-[#2f2f35] transition-all duration-300"
+                className={`p-8 rounded-xl hover:bg-[#2f2f35] transition-all duration-300 ${
+                  item.primary
+                    ? "md:col-span-2 bg-accent-default/10 border border-accent-default/40"
+                    : "bg-[#27272c]"
+                }`}
               >
                 <div className="flex flex-col items-center text-center gap-4">
                   <div className="w-[72px] h-[72px] bg-[#1a1a1d] text-accent-default rounded-full flex items-center justify-center mb-2">
