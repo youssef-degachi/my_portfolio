@@ -36,7 +36,7 @@ Template in `.exemple.env`. Never commit `.env`.
 | `/services` | `src/pages/Services.jsx` | |
 | `/pricing` | `src/pages/Pricing.jsx` | 4 custom offers (starting prices, currency selector), WhatsApp CTA, FAQ accordion; data in `src/data/pricing.js`, components `PricingCard.jsx` (flip on md+, expand on mobile) + `Faq.jsx` |
 | `/resume` | `src/pages/Resume.jsx` | tabs: about / experience / education / skills |
-| `/work` | `src/pages/Work.jsx` | tabs Products \| Client work; data in `src/data/work.js` |
+| `/work` | `src/pages/Work.jsx` | project **library**: filter chips (All/Product/Client work/Open source) over one grid of `ProjectCard.jsx`; data + helpers in `src/data/work.js`. Open-source cards (badge + GitHub/★) auto-appear when an item has `kind: opensource` + `visible: true`. Old `ClientWorkSlider.jsx` now unused |
 | `/knowledge` | `src/pages/Knowledge.jsx` | searchable knowledge base (see below) |
 | `/knowledge/:slug` | `src/pages/KnowledgeEntry.jsx` | one blog / note |
 | `/contact` | `src/pages/Contact.jsx` | WhatsApp primary |

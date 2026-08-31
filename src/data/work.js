@@ -136,3 +136,35 @@ export const workItems = [
 
 export const visibleWorkByKind = (kind) =>
   workItems.filter((item) => item.kind === kind && item.visible);
+
+
+// --- Library helpers ----------------------------------------------------------
+
+/** Human label + accent for each kind (used by the library chips + card badge). */
+export const KIND_META = {
+  [WORK_KIND.PRODUCT]: { label: "Product", accent: "accent" },
+  [WORK_KIND.CLIENT]: { label: "Client work", accent: "neutral" },
+  [WORK_KIND.OPEN_SOURCE]: { label: "Open source", accent: "provision" },
+  [WORK_KIND.YOUTUBE]: { label: "YouTube", accent: "accent" },
+};
+
+/** Order the filter chips appear in. */
+export const LIBRARY_KINDS = [WORK_KIND.PRODUCT, WORK_KIND.CLIENT, WORK_KIND.OPEN_SOURCE];
+
+/** All visible projects, products first, then client work, then open source. */
+export const visibleWork = () => {
+  const order = { [WORK_KIND.PRODUCT]: 0, [WORK_KIND.CLIENT]: 1, [WORK_KIND.OPEN_SOURCE]: 2, [WORK_KIND.YOUTUBE]: 3 };
+  return workItems
+    .filter((i) => i.visible)
+    .sort((a, b) => (order[a.kind] ?? 9) - (order[b.kind] ?? 9));
+};
+
+/** Stack entries are either strings (products) or { name } (client) — normalise to strings. */
+export const tagsOf = (item) =>
+  (item.stack || []).map((t) => (typeof t === "string" ? t : t.name)).filter(Boolean);
+
+/** One-line description, whichever field the item uses. */
+export const blurbOf = (item) => item.tagline || item.description || "";
+
+/** Count of visible items per kind, for the chip badges. */
+export const countByKind = (kind) => workItems.filter((i) => i.visible && i.kind === kind).length;

@@ -1,83 +1,74 @@
-import { motion } from "framer-motion";
-import { BsArrowUpRight } from "react-icons/bs";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import ClientWorkSlider from "@/components/ClientWorkSlider";
-import { visibleWorkByKind, WORK_KIND } from "@/data/work";
+import { useMemo, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import ProjectCard from "@/components/ProjectCard";
+import { visibleWork, LIBRARY_KINDS, KIND_META, countByKind } from "@/data/work";
 
-const ProductCard = ({ item }) => {
-  return (
-    <article className="flex flex-col justify-between min-h-[320px] p-8 rounded-xl bg-[#232329] border border-white/5 hover:border-accent-default/40 transition-colors duration-300">
-      <div>
-        <div className="w-16 h-16 mb-6 rounded-full border border-accent-default text-accent-default flex items-center justify-center text-2xl font-semibold">
-          {item.image ? (
-            <img src={item.image} alt="" className="w-full h-full object-cover rounded-full" />
-          ) : (
-            item.mark
-          )}
-        </div>
-        <h3 className="text-3xl font-bold mb-3">{item.title}</h3>
-        <p className="text-white/60 mb-3">{item.tagline}</p>
-        <p className="text-sm text-white/40 mb-6">{item.role}</p>
-        <ul className="flex flex-wrap gap-2 mb-6">
-          {item.stack.map((tag) => (
-            <li
-              key={tag}
-              className="text-xs uppercase tracking-wide text-accent-default border border-accent-default/30 rounded-full px-3 py-1"
-            >
-              {tag}
-            </li>
-          ))}
-        </ul>
-      </div>
-      {item.live && (
-        <a
-          href={item.live}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-accent-default hover:text-accent-hover transition-colors"
-        >
-          Visit site
-          <BsArrowUpRight />
-        </a>
-      )}
-    </article>
-  );
-};
+const chip = (active) =>
+  `text-sm rounded-full px-4 py-2 border transition-colors ${
+    active
+      ? "bg-accent-default text-primary border-accent-default"
+      : "border-white/10 text-white/60 hover:text-white hover:border-white/30"
+  }`;
 
 const Work = () => {
-  const products = visibleWorkByKind(WORK_KIND.PRODUCT);
+  const [filter, setFilter] = useState("all");
+  const all = useMemo(() => visibleWork(), []);
+  const kinds = LIBRARY_KINDS.filter((k) => countByKind(k) > 0);
+  const shown = filter === "all" ? all : all.filter((i) => i.kind === filter);
 
   return (
     <motion.section
       initial={{ opacity: 0 }}
-      animate={{
-        opacity: 1,
-        transition: { delay: 1.4, duration: 0.4, ease: "easeIn" },
-      }}
-      className="min-h-[80vh] flex flex-col justify-center py-12 xl:px-0"
+      animate={{ opacity: 1, transition: { delay: 1.4, duration: 0.4, ease: "easeIn" } }}
+      className="min-h-[80vh] py-12 xl:py-16"
     >
       <div className="container mx-auto">
-        <Tabs defaultValue="products" className="w-full">
-          <TabsList className="flex flex-row w-full max-w-[420px] mx-auto mb-12 gap-4">
-            <TabsTrigger value="products">Products</TabsTrigger>
-            <TabsTrigger value="client">Client work</TabsTrigger>
-          </TabsList>
+        {/* ---- header ---------------------------------------------------- */}
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <p className="text-[11px] uppercase tracking-[4px] text-accent-default mb-4">Project library</p>
+          <h1 className="h2 mb-4">
+            My work<span className="text-accent-default">.</span>
+          </h1>
+          <p className="text-white/60">
+            Everything I&apos;ve built — products I co-founded, client work, and open-source projects. Browse the
+            whole library or filter by type.
+          </p>
+        </div>
 
-          <TabsContent value="products" className="w-full min-h-0">
-            <p className="text-white/50 text-center mb-10 max-w-xl mx-auto">
-              Products I co-founded and ship.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {products.map((item) => (
-                <ProductCard key={item.id} item={item} />
-              ))}
-            </div>
-          </TabsContent>
+        {/* ---- filter chips ---------------------------------------------- */}
+        <div className="flex flex-wrap justify-center gap-2.5 mb-12">
+          <button type="button" onClick={() => setFilter("all")} className={chip(filter === "all")}>
+            All <span className={`ml-1.5 text-xs ${filter === "all" ? "text-primary/70" : "text-white/40"}`}>{all.length}</span>
+          </button>
+          {kinds.map((k) => (
+            <button key={k} type="button" onClick={() => setFilter(k)} className={chip(filter === k)}>
+              {KIND_META[k].label}
+              <span className={`ml-1.5 text-xs ${filter === k ? "text-primary/70" : "text-white/40"}`}>{countByKind(k)}</span>
+            </button>
+          ))}
+        </div>
 
-          <TabsContent value="client" className="w-full min-h-0">
-            <ClientWorkSlider />
-          </TabsContent>
-        </Tabs>
+        {/* ---- grid ------------------------------------------------------ */}
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 xl:gap-8">
+          <AnimatePresence mode="popLayout">
+            {shown.map((item) => (
+              <motion.div
+                key={item.id || item.num || item.title}
+                layout
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.97 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ProjectCard item={item} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+
+        {shown.length === 0 && (
+          <p className="text-center text-white/40 py-16">Nothing here yet — coming soon.</p>
+        )}
       </div>
     </motion.section>
   );
