@@ -120,6 +120,12 @@ const Knowledge = () => {
 
   const all = entries || [];
   const counts = useMemo(() => countByGroup(all), [all]);
+  // channel/person id → how many published entries point at it (its playlist)
+  const playlistCounts = useMemo(() => {
+    const m = new Map();
+    for (const e of all) if (e.source_id) m.set(e.source_id, (m.get(e.source_id) || 0) + 1);
+    return m;
+  }, [all]);
   const tags = useMemo(() => collectTags(all).slice(0, 15), [all]);
   const cats = useMemo(() => collectCategories(all, categories), [all, categories]);
   const results = useMemo(
@@ -248,7 +254,7 @@ const Knowledge = () => {
             <div className="columns-1 md:columns-2 xl:columns-3 gap-6">
               {results.map((entry) => (
                 <div key={entry.id} className="mb-6 break-inside-avoid">
-                  <KnowledgeCard entry={entry} onTag={toggleTag} onCategory={toggleCategory} />
+                  <KnowledgeCard entry={entry} onTag={toggleTag} onCategory={toggleCategory} playlistCount={playlistCounts.get(entry.id) || 0} />
                 </div>
               ))}
             </div>

@@ -116,8 +116,8 @@ const SummaryLink = ({ entry, children = "Summary" }) => {
 };
 
 /** Row with the primary (summary) + secondary (external) actions. */
-const Actions = ({ entry, external, left = null }) => {
-  const summary = hasSummary(entry);
+const Actions = ({ entry, external, left = null, forceSummary = false, summaryLabel }) => {
+  const summary = hasSummary(entry) || (forceSummary && entry.slug);
   return (
     <div className="flex items-center justify-between gap-3 mt-5 flex-wrap">
       <div className="flex items-center gap-3">{left}</div>
@@ -127,7 +127,7 @@ const Actions = ({ entry, external, left = null }) => {
             {external}
           </ExtLink>
         )}
-        {summary && <SummaryLink entry={entry} />}
+        {summary && <SummaryLink entry={entry}>{summaryLabel || "Summary"}</SummaryLink>}
       </div>
     </div>
   );
@@ -268,7 +268,7 @@ const ResourceCard = ({ entry, onTag, onCategory }) => {
 };
 
 // --- Person / Channel ---------------------------------------------------------
-const PeopleCard = ({ entry, onTag, onCategory }) => (
+const PeopleCard = ({ entry, onTag, onCategory, playlistCount = 0 }) => (
   <article className={`${cardBase} ${featuredClass(entry)}`}>
     <Header entry={entry} label={entry.type} onCategory={onCategory} />
     <div className="flex items-center gap-4 mb-3">
@@ -290,12 +290,17 @@ const PeopleCard = ({ entry, onTag, onCategory }) => (
         {entry.summary}
       </p>
     )}
-    <Actions entry={entry} external="Follow" />
+    <Actions
+      entry={entry}
+      external="Follow"
+      forceSummary
+      summaryLabel={`Playlist (${playlistCount})`}
+    />
     <Tags tags={entry.tags} onTag={onTag} />
   </article>
 );
 
-const KnowledgeCard = ({ entry, onTag, onCategory }) => {
+const KnowledgeCard = ({ entry, onTag, onCategory, playlistCount = 0 }) => {
   switch (entry.type) {
     case "blog":
     case "note":
@@ -306,7 +311,7 @@ const KnowledgeCard = ({ entry, onTag, onCategory }) => {
       return <VideoCard entry={entry} onTag={onTag} onCategory={onCategory} />;
     case "channel":
     case "person":
-      return <PeopleCard entry={entry} onTag={onTag} onCategory={onCategory} />;
+      return <PeopleCard entry={entry} onTag={onTag} onCategory={onCategory} playlistCount={playlistCount} />;
     default:
       return <ResourceCard entry={entry} onTag={onTag} onCategory={onCategory} />;
   }

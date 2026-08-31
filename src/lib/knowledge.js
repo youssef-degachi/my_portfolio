@@ -5,6 +5,10 @@ import { seedEntries, seedCategories, KNOWLEDGE_GROUPS } from "@/data/knowledge"
 const CATEGORY_EMBED = `case when c.id is null then null else
   json_build_object('id', c.id, 'name', c.name, 'slug', c.slug, 'color', c.color) end as category`;
 
+/** Embedded channel/person this entry is from (entries.source_id → entries.id). RLS: null unless published. */
+const SOURCE_EMBED = `case when s.id is null then null else
+  json_build_object('id', s.id, 'title', s.title, 'slug', s.slug, 'type', s.type) end as source`;
+
 /**
  * Light list query: everything a card needs, WITHOUT the rich content columns
  * (content_html may embed images as data: URLs). `has_content` tells the card
@@ -12,17 +16,20 @@ const CATEGORY_EMBED = `case when c.id is null then null else
  */
 const LIST_SQL = `select e.id, e.type, e.title, e.slug, e.summary, e.category_id, e.url, e.author,
     e.platform, e.tags, e.language, e.cover_image, e.status, e.rating, e.featured, e.published,
-    e.published_at, e.created_at, e.updated_at,
+    e.published_at, e.created_at, e.updated_at, e.source_id,
     (coalesce(e.content_html, '') <> '') as has_content,
-    ${CATEGORY_EMBED}
+    ${CATEGORY_EMBED},
+    ${SOURCE_EMBED}
   from public.entries e
   left join public.categories c on c.id = e.category_id
+  left join public.entries s on s.id = e.source_id
   where e.published
   order by e.featured desc, e.published_at desc nulls last, e.created_at desc`;
 
-const ONE_SQL = `select e.*, (coalesce(e.content_html, '') <> '') as has_content, ${CATEGORY_EMBED}
+const ONE_SQL = `select e.*, (coalesce(e.content_html, '') <> '') as has_content, ${CATEGORY_EMBED}, ${SOURCE_EMBED}
   from public.entries e
   left join public.categories c on c.id = e.category_id
+  left join public.entries s on s.id = e.source_id
   where e.published and e.slug = $1
   limit 1`;
 

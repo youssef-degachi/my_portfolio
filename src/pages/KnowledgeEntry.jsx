@@ -6,7 +6,7 @@ import { FiArrowLeft, FiCheck, FiLink, FiExternalLink } from "react-icons/fi";
 import { FaStar, FaGlobe } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { typeMeta, colorOf, LINK_TYPES } from "@/data/knowledge";
-import { fetchEntryBySlug, formatDate, youtubeId, hostOf, faviconFor } from "@/lib/knowledge";
+import { fetchEntries, fetchEntryBySlug, formatDate, youtubeId, hostOf, faviconFor, hasSummary } from "@/lib/knowledge";
 
 const ME = "Youssef Degachi";
 
@@ -79,6 +79,7 @@ const KnowledgeEntry = () => {
   const location = useLocation();
   const backTo = location.state?.from || "/knowledge";
   const [state, setState] = useState({ loading: true, entry: null });
+  const [playlist, setPlaylist] = useState([]);
 
   useEffect(() => {
     let alive = true;
@@ -93,6 +94,19 @@ const KnowledgeEntry = () => {
 
   useEffect(() => {
     document.title = entry ? `${entry.title} — ${ME}` : `Knowledge — ${ME}`;
+  }, [entry]);
+
+  // channel/person → load its playlist (published entries pointing at it via source_id)
+  useEffect(() => {
+    if (!entry || !(entry.type === "channel" || entry.type === "person")) {
+      setPlaylist([]);
+      return undefined;
+    }
+    let alive = true;
+    fetchEntries().then((list) => alive && setPlaylist(list.filter((e) => e.source_id === entry.id)));
+    return () => {
+      alive = false;
+    };
   }, [entry]);
 
   const html = useMemo(
@@ -142,6 +156,7 @@ const KnowledgeEntry = () => {
   const meta = typeMeta(entry.type);
   const isLink = LINK_TYPES.includes(entry.type);
   const isPost = entry.type === "blog" || entry.type === "note";
+  const isFollow = entry.type === "channel" || entry.type === "person";
   const ytId = entry.type === "video" ? youtubeId(entry.url) : null;
   const openLabel =
     entry.type === "video" ? "Watch on" : entry.type === "channel" || entry.type === "person" ? "Follow on" : "Open on";
@@ -166,6 +181,14 @@ const KnowledgeEntry = () => {
             <CategoryPill category={entry.category} />
             <span className="text-white/40">{formatDate(entry.published_at || entry.created_at)}</span>
             {entry.author && entry.author !== ME && <span className="text-white/40">· {entry.author}</span>}
+            {entry.source?.slug && (
+              <Link
+                to={`/knowledge/${entry.source.slug}`}
+                className="text-white/40 hover:text-accent-default transition-colors"
+              >
+                · from <span className="text-white/70">{entry.source.title}</span>
+              </Link>
+            )}
           </div>
 
           <h1 className="h2 mb-4">{entry.title}</h1>
@@ -263,8 +286,53 @@ const KnowledgeEntry = () => {
 
         {html ? (
           <div className="knowledge-prose" dangerouslySetInnerHTML={{ __html: html }} />
-        ) : (
+        ) : isFollow ? null : (
           <p className="text-white/50">{isLink ? "No summary yet." : "No content yet."}</p>
+        )}
+
+        {/* channel / person: the entries linked to it (its playlist) */}
+        {isFollow && (
+          <section className="mt-12">
+            <h2 className="h3 mb-5 flex items-center gap-3">
+              <span className="text-accent-default">//</span> Playlist
+              <span className="text-sm text-white/40 font-normal">
+                {playlist.length} {playlist.length === 1 ? "item" : "items"}
+              </span>
+            </h2>
+            {playlist.length === 0 && <p className="text-white/50">Nothing linked here yet.</p>}
+            <ul className="flex flex-col gap-3">
+              {playlist.map((e) => {
+                const inner = (
+                  <>
+                    <span className="uppercase tracking-wider text-[10px] rounded-full px-2 py-0.5 border border-white/10 text-white/50 shrink-0">
+                      {typeMeta(e.type)?.label || e.type}
+                    </span>
+                    <span className="flex-1 min-w-0 truncate group-hover:text-accent-default transition-colors">
+                      {e.title}
+                    </span>
+                    <span className="text-xs text-white/40 whitespace-nowrap">
+                      {formatDate(e.published_at || e.created_at)}
+                    </span>
+                  </>
+                );
+                const cls =
+                  "group flex items-center gap-3 rounded-xl border border-white/5 bg-[#232329] px-4 py-3 hover:border-accent-default/40 transition-colors";
+                return (
+                  <li key={e.id}>
+                    {hasSummary(e) ? (
+                      <Link to={`/knowledge/${e.slug}`} state={{ from: location.pathname }} className={cls}>
+                        {inner}
+                      </Link>
+                    ) : (
+                      <a href={e.url} target="_blank" rel="noopener noreferrer" className={cls}>
+                        {inner}
+                      </a>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
         )}
 
         <footer className="mt-16 pt-8 border-t border-white/10 flex items-center justify-between gap-4 flex-wrap">
