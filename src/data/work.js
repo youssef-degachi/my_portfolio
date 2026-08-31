@@ -129,7 +129,7 @@ export const workItems = [
       "A complete wedding sales management application for one of our clients, handling bookings, sales, and event management.",
     stack: [{ name: "React.js" }, { name: "Node.js" }, { name: "Database" }, { name: "Payment Integration" }],
     image: "/assets/work/wedding-system.png",
-    live: "https://najib-salles.vercel.app/",
+    live: "",
     github: "",
   },
 ];
