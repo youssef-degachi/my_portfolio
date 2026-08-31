@@ -65,7 +65,10 @@ const Cover = ({ item }) => {
 
 const Actions = ({ item }) => {
   const isOSS = item.kind === WORK_KIND.OPEN_SOURCE;
-  const liveLabel = isOSS ? "Live demo" : "Visit";
+  const liveLabel = isOSS ? "Live demo" : item.prototype ? "View prototype" : "Visit";
+  const privateLabel = item.prototype
+    ? "Prototype only — real client project under NDA"
+    : "Private / NDA — no public link";
   return (
     <div className="flex items-center gap-4 mt-5 pt-5 border-t border-white/10">
       {item.live && (
@@ -96,7 +99,7 @@ const Actions = ({ item }) => {
         </a>
       )}
       {!item.live && !item.github && (
-        <span className="text-sm text-white/35">Private / NDA — no public link</span>
+        <span className="text-sm text-white/35">{privateLabel}</span>
       )}
     </div>
   );
@@ -112,7 +115,7 @@ const ProjectCard = ({ item }) => {
 
       <div className="flex flex-col flex-1 p-6">
         {/* badges — kind badge only for open source; products/client stay uniform */}
-        {(item.kind === WORK_KIND.OPEN_SOURCE || item.category || item.nda) && (
+        {(item.kind === WORK_KIND.OPEN_SOURCE || item.category || item.prototype || item.nda) && (
           <div className="flex items-center gap-2 flex-wrap mb-3">
             {item.kind === WORK_KIND.OPEN_SOURCE && (
               <span className={`text-[10px] uppercase tracking-wider rounded-full px-2.5 py-0.5 border ${kindBadge.provision}`}>
@@ -122,6 +125,11 @@ const ProjectCard = ({ item }) => {
             {item.category && (
               <span className="text-[10px] uppercase tracking-wider rounded-full px-2.5 py-0.5 border border-white/10 text-white/50">
                 {item.category}
+              </span>
+            )}
+            {item.prototype && (
+              <span className="text-[10px] uppercase tracking-wider rounded-full px-2.5 py-0.5 border border-white/10 text-white/50">
+                Prototype
               </span>
             )}
             {item.nda && (
