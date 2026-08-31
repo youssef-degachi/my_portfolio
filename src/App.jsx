@@ -7,6 +7,7 @@ import ParticlesContainer from "@/components/ParticlesContainer";
 // Pages
 import Home from "@/pages/Home";
 import Services from "@/pages/Services";
+import Pricing from "@/pages/Pricing";
 import Resume from "@/pages/Resume";
 import Work from "@/pages/Work";
 import Contact from "@/pages/Contact";
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/pricing" element={<Pricing />} />
           <Route path="/resume" element={<Resume />} />
           <Route path="/work" element={<Work />} />
           <Route path="/knowledge" element={<Knowledge />} />
