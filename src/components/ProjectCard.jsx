@@ -111,22 +111,26 @@ const ProjectCard = ({ item }) => {
       <Cover item={item} />
 
       <div className="flex flex-col flex-1 p-6">
-        {/* badges */}
-        <div className="flex items-center gap-2 flex-wrap mb-3">
-          <span className={`text-[10px] uppercase tracking-wider rounded-full px-2.5 py-0.5 border ${kindBadge[meta.accent] || kindBadge.neutral}`}>
-            {meta.label}
-          </span>
-          {item.category && (
-            <span className="text-[10px] uppercase tracking-wider rounded-full px-2.5 py-0.5 border border-white/10 text-white/50">
-              {item.category}
-            </span>
-          )}
-          {item.nda && (
-            <span className="text-[10px] uppercase tracking-wider rounded-full px-2.5 py-0.5 border border-white/10 text-white/40">
-              NDA
-            </span>
-          )}
-        </div>
+        {/* badges — kind badge only for open source; products/client stay uniform */}
+        {(item.kind === WORK_KIND.OPEN_SOURCE || item.category || item.nda) && (
+          <div className="flex items-center gap-2 flex-wrap mb-3">
+            {item.kind === WORK_KIND.OPEN_SOURCE && (
+              <span className={`text-[10px] uppercase tracking-wider rounded-full px-2.5 py-0.5 border ${kindBadge.provision}`}>
+                {meta.label}
+              </span>
+            )}
+            {item.category && (
+              <span className="text-[10px] uppercase tracking-wider rounded-full px-2.5 py-0.5 border border-white/10 text-white/50">
+                {item.category}
+              </span>
+            )}
+            {item.nda && (
+              <span className="text-[10px] uppercase tracking-wider rounded-full px-2.5 py-0.5 border border-white/10 text-white/40">
+                NDA
+              </span>
+            )}
+          </div>
+        )}
 
         <h3 className="text-xl font-bold leading-snug mb-2 group-hover:text-accent-default transition-colors">
           {item.title}

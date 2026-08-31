@@ -20,7 +20,7 @@ export const workItems = [
     stack: ["AI", "Voice agents", "Fullstack"],
     live: "https://andalibai.com",
     github: "",
-    image: "",
+    image: "/assets/work/andalib.png",
     mark: "A",
   },
   {
@@ -33,7 +33,7 @@ export const workItems = [
     stack: ["Fullstack", "Education", "Web"],
     live: "https://jeridschool.com",
     github: "",
-    image: "",
+    image: "/assets/work/jeridschool.png",
     mark: "J",
   },
   {
