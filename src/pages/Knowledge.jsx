@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import KnowledgeCard from "@/components/KnowledgeCard";
 import { KNOWLEDGE_GROUPS, colorOf } from "@/data/knowledge";
+import { hasDb } from "@/lib/db";
 import {
   fetchEntries,
   fetchCategories,
@@ -139,6 +140,7 @@ const Knowledge = () => {
   };
   const toggleTag = (t) => update({ tag: tag === t ? "" : t });
   const toggleCategory = (slug) => update({ category: category === slug ? "" : slug });
+  const filtered = Boolean(q || tag || category || group !== "all");
 
   return (
     <motion.section
@@ -232,14 +234,27 @@ const Knowledge = () => {
           <Skeleton />
         ) : results.length === 0 ? (
           <div className="text-center py-20">
-            <p className="text-xl text-white/70 mb-6">
-              Nothing found{q ? ` for “${q}”` : ""}
-              {tag ? ` in #${tag}` : ""}
-              {category ? ` in ${cats.find((c) => c.slug === category)?.name || category}` : ""}.
-            </p>
-            <Button variant="outline" onClick={reset}>
-              Reset filters
-            </Button>
+            {!hasDb && !filtered ? (
+              <>
+                <p className="text-xl text-white/70 mb-3">Knowledge database not connected.</p>
+                <p className="text-white/50 max-w-md mx-auto">
+                  Set <code className="text-accent-default">VITE_DATABASE_URL</code> in your environment to load published entries from Neon.
+                </p>
+              </>
+            ) : !filtered && all.length === 0 ? (
+              <p className="text-xl text-white/70">No published entries yet.</p>
+            ) : (
+              <>
+                <p className="text-xl text-white/70 mb-6">
+                  Nothing found{q ? ` for “${q}”` : ""}
+                  {tag ? ` in #${tag}` : ""}
+                  {category ? ` in ${cats.find((c) => c.slug === category)?.name || category}` : ""}.
+                </p>
+                <Button variant="outline" onClick={reset}>
+                  Reset filters
+                </Button>
+              </>
+            )}
           </div>
         ) : (
           <>

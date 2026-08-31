@@ -1,5 +1,5 @@
 import { sql, normalizeRow } from "@/lib/db";
-import { seedEntries, seedCategories, KNOWLEDGE_GROUPS } from "@/data/knowledge";
+import { KNOWLEDGE_GROUPS } from "@/data/knowledge";
 
 /** Embedded category object, same shape the editor uses (needs the FK entries.category_id → categories.id). */
 const CATEGORY_EMBED = `case when c.id is null then null else
@@ -36,7 +36,7 @@ const ONE_SQL = `select e.*, (coalesce(e.content_html, '') <> '') as has_content
 const CATEGORIES_SQL = `select * from public.categories order by sort_order asc, name asc`;
 
 // ---------------------------------------------------------------------------
-// Fetching (with in-memory cache + seed fallback)
+// Fetching (Neon only — no local seed fallback)
 // ---------------------------------------------------------------------------
 
 let cache = null; // resolved array of entries
@@ -46,7 +46,7 @@ let warned = false;
 const warnOnce = (msg, err) => {
   if (warned) return;
   warned = true;
-  console.warn(`[knowledge] ${msg} — using local seed data.`, err || "");
+  console.warn(`[knowledge] ${msg}`, err || "");
 };
 
 const sortEntries = (list) =>
@@ -57,22 +57,17 @@ const sortEntries = (list) =>
     return db.localeCompare(da);
   });
 
-/** Seed rows carry content_html directly; give them the same `has_content` flag as DB rows. */
-const withHasContent = (e) => ({ ...e, has_content: Boolean(e.content_html && e.content_html.trim()) });
-
-const seedList = () => sortEntries(seedEntries.map(withHasContent));
-
 async function load() {
   if (!sql) {
-    warnOnce("VITE_DATABASE_URL missing");
-    return seedList();
+    warnOnce("VITE_DATABASE_URL missing — knowledge list will be empty");
+    return [];
   }
   try {
     const rows = await sql.query(LIST_SQL);
     return sortEntries((rows || []).map(normalizeRow));
   } catch (err) {
     warnOnce("Database request failed", err);
-    return seedList();
+    return [];
   }
 }
 
@@ -96,10 +91,6 @@ export async function fetchEntryBySlug(slug) {
   if (!slug) return null;
   if (fullCache.has(slug)) return fullCache.get(slug);
 
-  // list rows that already carry content (seed data) are complete
-  const fromCache = cache?.find((e) => e.slug === slug);
-  if (fromCache && typeof fromCache.content_html === "string") return fromCache;
-
   if (sql) {
     try {
       const rows = await sql.query(ONE_SQL, [slug]);
@@ -122,22 +113,22 @@ export async function fetchEntryBySlug(slug) {
 
 let categoryCache = null;
 
-/** All categories ordered by sort_order then name. Falls back to seedCategories. */
+/** All categories ordered by sort_order then name. */
 export async function fetchCategories() {
   if (categoryCache) return categoryCache;
-  let list = seedCategories;
-  if (sql) {
-    try {
-      const rows = await sql.query(CATEGORIES_SQL);
-      list = (rows || []).map(normalizeRow);
-    } catch (err) {
-      warnOnce("Database request failed", err);
-    }
-  } else {
-    warnOnce("VITE_DATABASE_URL missing");
+  if (!sql) {
+    warnOnce("VITE_DATABASE_URL missing — categories will be empty");
+    categoryCache = [];
+    return categoryCache;
   }
-  categoryCache = list;
-  return list;
+  try {
+    const rows = await sql.query(CATEGORIES_SQL);
+    categoryCache = (rows || []).map(normalizeRow);
+  } catch (err) {
+    warnOnce("Database request failed", err);
+    categoryCache = [];
+  }
+  return categoryCache;
 }
 
 /** Categories that have at least one entry, with counts, in `categories` order. */
