@@ -16,9 +16,9 @@ const links =[
   },{
     name: "work",
     path : "/work",
-  },{
-    name: "knowledge",
-    path : "/knowledge",
+  // },{
+  //   name: "knowledge",
+  //   path : "/knowledge",
   },{
     name: "contact",
     path : "/contact",

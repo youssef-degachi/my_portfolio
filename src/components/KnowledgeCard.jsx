@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { BsArrowUpRight, BsPlayFill, BsFileText } from "react-icons/bs";
-import { FaYoutube, FaLinkedinIn, FaGithub, FaGlobe, FaPodcast, FaStar } from "react-icons/fa";
+import { FaYoutube, FaLinkedinIn, FaGithub, FaGlobe, FaPodcast, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { typeMeta, colorOf } from "@/data/knowledge";
 import { youtubeThumb, faviconFor, hostOf, formatDate, hasSummary } from "@/lib/knowledge";
@@ -69,14 +69,18 @@ const Tags = ({ tags = [], onTag }) =>
     </ul>
   ) : null;
 
-const Stars = ({ rating }) =>
-  rating ? (
-    <span className="inline-flex items-center gap-0.5 text-accent-default text-xs" aria-label={`${rating} out of 5`}>
-      {Array.from({ length: rating }).map((_, i) => (
+const Stars = ({ rating }) => {
+  const r = Number(rating) || 0;
+  if (!r) return null;
+  return (
+    <span className="inline-flex items-center gap-0.5 text-accent-default text-xs" aria-label={`${r} out of 5`}>
+      {Array.from({ length: Math.floor(r) }).map((_, i) => (
         <FaStar key={i} />
       ))}
+      {r % 1 >= 0.5 && <FaStarHalfAlt />}
     </span>
-  ) : null;
+  );
+};
 
 const Header = ({ entry, label, onCategory }) => (
   <div className="flex items-start justify-between gap-2 mb-4">

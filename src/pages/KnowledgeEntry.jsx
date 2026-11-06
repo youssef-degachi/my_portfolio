@@ -3,7 +3,7 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import DOMPurify from "dompurify";
 import { FiArrowLeft, FiCheck, FiLink, FiExternalLink } from "react-icons/fi";
-import { FaStar, FaGlobe } from "react-icons/fa";
+import { FaStar, FaStarHalfAlt, FaGlobe } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { typeMeta, colorOf, LINK_TYPES } from "@/data/knowledge";
 import { fetchEntries, fetchEntryBySlug, formatDate, youtubeId, hostOf, faviconFor, hasSummary } from "@/lib/knowledge";
@@ -219,9 +219,10 @@ const KnowledgeEntry = () => {
                 {entry.platform && <span className="uppercase tracking-wider">{entry.platform}</span>}
                 {entry.rating ? (
                   <span className="inline-flex items-center gap-0.5 text-accent-default" aria-label={`${entry.rating} out of 5`}>
-                    {Array.from({ length: entry.rating }).map((_, i) => (
+                    {Array.from({ length: Math.floor(entry.rating) }).map((_, i) => (
                       <FaStar key={i} />
                     ))}
+                    {entry.rating % 1 >= 0.5 && <FaStarHalfAlt />}
                   </span>
                 ) : null}
                 {entry.status && entry.status !== "done" && (

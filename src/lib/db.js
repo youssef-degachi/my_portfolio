@@ -18,5 +18,6 @@ export function normalizeRow(row) {
   if (!row) return row;
   const out = {};
   for (const [k, v] of Object.entries(row)) out[k] = v instanceof Date ? v.toISOString() : v;
+  if (out.rating != null) out.rating = Number(out.rating); // numeric arrives as a string
   return out;
 }

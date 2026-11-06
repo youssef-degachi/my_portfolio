@@ -11,8 +11,8 @@ import Pricing from "@/pages/Pricing";
 import Resume from "@/pages/Resume";
 import Work from "@/pages/Work";
 import Contact from "@/pages/Contact";
-import Knowledge from "@/pages/Knowledge";
-import KnowledgeEntry from "@/pages/KnowledgeEntry";
+// import Knowledge from "@/pages/Knowledge";
+// import KnowledgeEntry from "@/pages/KnowledgeEntry";
 
 function App() {
   return (
@@ -28,8 +28,8 @@ function App() {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/resume" element={<Resume />} />
           <Route path="/work" element={<Work />} />
-          <Route path="/knowledge" element={<Knowledge />} />
-          <Route path="/knowledge/:slug" element={<KnowledgeEntry />} />
+          {/* <Route path="/knowledge" element={<Knowledge />} /> */}
+          {/* <Route path="/knowledge/:slug" element={<KnowledgeEntry />} /> */}
           <Route path="/contact" element={<Contact />} />
         </Routes>
         {/* </PageTransition> */}
