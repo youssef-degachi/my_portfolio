@@ -41,6 +41,8 @@ Template in `.exemple.env`. Never commit `.env`.
 | `/knowledge/:slug` | `src/pages/KnowledgeEntry.jsx` | one blog / note |
 | `/contact` | `src/pages/Contact.jsx` | WhatsApp primary |
 
+**Design versions (`/v1`…`/v6`, compare at `/versions`).** Full redesigns being compared; the current site stays at the routes above until one is picked. Each lives in `src/versions/vN/` as its own lazy chunk with scoped CSS. V3 picks one of three shape sets per visit (`v3/sets/`, one chunk each, force with `?set=1`), ends on a call scene and opens V6's call on top of itself (`CallOverlay` exported from `v6/V6.jsx`). All copy and data comes from `src/versions/content.js` (which reuses `src/data/work.js` and `src/data/pricing.js`), so edit content there. `src/versions/shared.jsx` holds smooth scroll, GSAP helpers, `PricingBlock` and `FaqList` (themed per version via `--pb-*` variables). V6 "The Call" is a scripted in-browser voice agent: its answers are in `src/versions/v6/brain.js` (no LLM, no backend). `App.jsx` routes them; the current site moved unchanged into `src/LegacySite.jsx`.
+
 Nav links are duplicated in `src/components/Nav.jsx` (desktop) and `src/components/MobileNav.jsx` — change both.
 
 ## Knowledge section (how it works)

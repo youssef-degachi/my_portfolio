@@ -1,42 +1,43 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from "@/components/Header";
-import PageTransition from "@/components/PageTransition";
-import StairTransition from "@/components/StairTransition";
-import ParticlesContainer from "@/components/ParticlesContainer";
+import { lazy, Suspense } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import VersionSwitcher from "@/versions/VersionSwitcher";
 
-// Pages
-import Home from "@/pages/Home";
-import Services from "@/pages/Services";
-import Pricing from "@/pages/Pricing";
-import Resume from "@/pages/Resume";
-import Work from "@/pages/Work";
-import Contact from "@/pages/Contact";
-// import Knowledge from "@/pages/Knowledge";
-// import KnowledgeEntry from "@/pages/KnowledgeEntry";
+const LegacySite = lazy(() => import("@/LegacySite"));
+const Versions = lazy(() => import("@/versions/Versions"));
+
+// Each design is its own chunk, so one version never pays for another's libraries.
+const DESIGNS = {
+  v1: lazy(() => import("@/versions/v1/V1")),
+  v2: lazy(() => import("@/versions/v2/V2")),
+  v3: lazy(() => import("@/versions/v3/V3")),
+  v4: lazy(() => import("@/versions/v4/V4")),
+  v5: lazy(() => import("@/versions/v5/V5")),
+  v6: lazy(() => import("@/versions/v6/V6")),
+};
 
 function App() {
   return (
     <Router basename={import.meta.env.BASE_URL}>
-      <div className="font-jetbrains-mono min-h-screen w-full bg-primary relative">
-        <ParticlesContainer className="absolute top-0 left-0 w-full h-full opacity-20 z-index-negative-2 pointer-events-none" />
-        <Header />
-        {/* <StairTransition/> */}
-        {/* <PageTransition> */}
+      <Suspense fallback={<div style={{ minHeight: "100vh", background: "#000" }} />}>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/pricing" element={<Pricing />} />
-          <Route path="/resume" element={<Resume />} />
-          <Route path="/work" element={<Work />} />
-          {/* <Route path="/knowledge" element={<Knowledge />} /> */}
-          {/* <Route path="/knowledge/:slug" element={<KnowledgeEntry />} /> */}
-          <Route path="/contact" element={<Contact />} />
+          {Object.entries(DESIGNS).map(([id, Design]) => (
+            <Route
+              key={id}
+              path={`/${id}/*`}
+              element={
+                <>
+                  <Design />
+                  <VersionSwitcher current={id} />
+                </>
+              }
+            />
+          ))}
+          <Route path="/versions" element={<Versions />} />
+          <Route path="/*" element={<LegacySite />} />
         </Routes>
-        {/* </PageTransition> */}
-      </div>
+      </Suspense>
     </Router>
   );
 }
 
 export default App;
-
