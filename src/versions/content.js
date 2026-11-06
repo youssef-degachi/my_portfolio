@@ -1,5 +1,5 @@
 /**
- * Single source of truth for every design version (/v1 … /v6).
+ * Single source of truth for the site copy and data.
  * Projects and pricing are reused from src/data so there is one place to edit them.
  */
 import { visibleWork, tagsOf, blurbOf, KIND_META, WORK_KIND } from "@/data/work";
@@ -118,11 +118,3 @@ export const navLinks = [
   { id: "contact", label: "Contact" },
 ];
 
-export const VERSIONS = [
-  { id: "v1", name: "The Lab", note: "Blueprint engineering lab. Giant type, horizontal builds, a working terminal." },
-  { id: "v2", name: "The Turn", note: "Black editorial. A clock whose hands form a Y — scrolling turns the career." },
-  { id: "v3", name: "Assembly", note: "WebGL particles build my face from my photo, then one of three shape sets, and it ends on a call." },
-  { id: "v4", name: "Operator", note: "The hybrid. Your red, a live bento board, a deck of projects. The client closer." },
-  { id: "v5", name: "Jerid", note: "Light. Tozeur brick patterns under a sun that crosses the sky as you scroll." },
-  { id: "v6", name: "The Call", note: "The wild one. The portfolio rings. Answer, and talk to it." },
-];

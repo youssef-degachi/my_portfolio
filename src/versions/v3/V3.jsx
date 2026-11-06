@@ -52,7 +52,7 @@ function Hud({ count }) {
 }
 
 export default function V3() {
-  usePage({ title: "Youssef Degachi — Assembly", bg: "#020205", fonts: "family=Syne:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500" });
+  usePage({ title: "Youssef Degachi — Fullstack engineer & AI builder", bg: "#020205", fonts: "family=Syne:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500" });
   const { go, lenis } = useSmoothScroll({ lerp: .08 });
   const [call, setCall] = useState(null);
   const openCall = (e) => setCall({ x: e.clientX, y: e.clientY });
